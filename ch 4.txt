@@ -1,0 +1,163 @@
+One question often asked is, 
+“Does a computer using word-addressable memory have more memory than a computer using byte-addressable memory?” 
+There are several ways to answer this question, depending on how
+one defines “same size.” If, indeed, the memory for each
+
+type of architecture is the exact same size (for example,
+1GB), then the answer is a definitive no! Both machines
+have a memory of 1GB, regardless of how that memory is
+addressed. 
+
+The confusion tends to come up when people
+define memory size as how many addresses memory has.
+// how many addresses does the memory have?
+
+If machine one has 1024 addresses and is byte
+addressable, but 
+// there are 1024 adrresses each address I suppose points to a byte but what is the size of a word?
+// This wasnt stated.
+
+machine two has 1024 addresses and is
+word addressable, where each word is 4 bytes,
+// Machine two still only has 1024 addresses.
+// Each of these addresses correspond to a word, where a word has a size of four bytes.
+// If machine two where byte addressable, it would require 1024*4 addresses.
+
+ then machine two definitely has more memory; 
+
+machine one
+has a total of 1024 bytes, whereas machine two has a
+total of 1024 × 4 = 4028 bytes.
+
+As an analogy, suppose
+you have an order form that allows you to order boxes of
+widgets, but on this order form the space given for
+writing in the number of boxes you want is limited to two
+digits. If you order 99 boxes, but each box contains 10
+widgets, that’s 990 widgets. However, if each box
+contains only 1 widget, the total is just 99 widgets.
+
+
+
+
+4.8.4 Register Transfer Notation
+
+<- : Memory Transfer
+M[X] value at address X
+
+    Load
+
+    Loads contents of location X into AC. The complete flow:
+
+    MAR <- X
+    MBR <- M[MAR]
+    AC <- MBR
+
+    Store
+
+    Store the contents of AC in memory at location X.
+
+    MAR <- X, MBR <- AC    // AC value moves to memory buffer register.
+    // X gets stored in MAR
+    M[MAR] <- MRB
+
+// The vaue of MRB is stored as the value in memory location M[MAR], where 
+MAR is the value X (the address)
+
+    Halt
+    Terminates program
+
+
+4.9 Instruction Processing
+
+fetch, decode, execute cycle.
+
+4.10 A Simple Program
+
+Our first program adds two numbers together (both of
+which are found in main memory), storing the sum in
+memory. 
+
+4.11 Assemblers
+
+Convert assembly language into machine code.
+
+4.12
+
+Extending our Instruction Store
+New instructions are given for efficency, such as add intermidiate.
+
+4.13 Decoding: Hardwird vs Microprogrammed Control
+In depth discussion of the function of the control unit.
+
+4.144 Examples of Archs
+Intel:
+
+It handled 16-bit data
+and worked with 20-bit addresses; thus it could address
+a million bytes of memory.
+
+2^20 address implies over a million addresses.
+each address corresponds to a byte (byte addressable memory).
+Thus it could address over a million bytes of memory.
+
+Systems with more than one processor can take advatage of multithreading.
+This is allowed by splitting instructions into separate threads.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
