@@ -131,51 +131,203 @@ where a word is the size of an instruction in memory. Most systems are byte addr
  instruction be used for the address.
 
 20. Why is address alignment important?
-I'm un
+
+Address alignment means data's adress is a mutiple of its data size ie
+a 4 byte integer should be stored at an address divisble by 4 as this allows for
+faster access and simplifies design.
+
 21. List and explain the two types of memory interleaving and the
 differences between them.
+Data interweaving allows separate memory banks to form a complete set of memory addresses.
+Two types of interweaving include low and high orders.
+In high order interweaving, the final bits of the instruction correspond to the address where the adress
+will consist of an adress for the module (bank) and an offset which denotes a location within that bank.
+
 22. Describe how an interrupt works, and name four different types.
+
+An iterrupt is a process which allows a CPU to pause its current execution flow to respond to another event.
+Types of interrupts include:
+Hardware, software, traps (errors during executution), timer interrupts.
+
 23. How does a maskable interrupt differ from a nonmaskable interrupt?
+Maskable events are lower priority interrupts which can be disabled.
+Unmaskable events cannot be ignored, hence, it is processed immediately.
+
 24. Why is it that if MARIE has 4K words of main memory, addresses
 must have 12 bits?
+4K=4 * 2^10 = 2^12  implies 4,096 words of memory
+Hence, to address each location in memory, 12 bits must be reserved for identifying the address.
+
 25. Explain the functions of all of MARIE’s registers.
+Accumulator (AC):
+    The primary working register for arithmetic and logic operations.
+    Stores intermediate results of calculations.
+Memory Address Register (MAR)
+    Holds the address of the memory location to be accessed (for reading or writing).
+Memory Buffer Register (MBR)
+    Temporarily holds data being transferred between the CPU and memory.
+Program Counter (PC)
+    Keeps track of the address of the next instruction to be executed.
+Instruction Register (IR)
+    Holds the current instruction being executed.
+Input Register (IN)
+    Temporarily stores input data entered into the system.
+
+
 26. What is an opcode?
+An opcode (operation code) is a string of bits that uniquely identifies a specific instruction in the Instruction Set Architecture (ISA) of a processor.
+
 27. Explain how each instruction in MARIE works.
+Instruction Set
+------------------
+Load X:	Load the value from memory into AC	Fetches the value at address X and stores it in the Accumulator (AC).
+Store X:	Store the value in AC into memory	Writes the value in the AC to memory address X.
+Add X:	Add the value from memory to AC	Adds the value at address X to the AC.
+Subt X:	Subtract the value from memory from AC	Subtracts the value at address X from the AC.
+Input:	Get input from the user	Reads a value from the Input Register (IN) into the AC.
+Output:	Send value to the output device	Writes the value in the AC to the Output Register (OUT).
+Halt:	Stop program execution	Terminates the program.
+Skipcond:	Skip the next instruction based on a condition	Skips the next instruction if the condition specified in the instruction is met.
+Jump X:	Jump to a specific address	Sets the Program Counter (PC) to X, altering the flow of execution.
+
+
 28. How does a machine language differ from an assembly language? Is
 the conversion one-to-one (one assembly instruction equals one
 machine instruction)?
+Yes. Machine language is a series of binary values a processor can read directly while an 
+assembly language is human readable.
+Assemblers convert assembly code into machine language.
+
 29. What is the significance of RTN?
+Register transfer notation shows how at the register level values are moved or altered and the flow of data
+between registers.
+
 30. Is a microoperation the same thing as a machine instruction?
+A microoperation is a low-level operation that specifies an elementary action on data, such as transferring data between registers or performing an arithmetic operation.
+It is a building block for executing machine instructions.
+
+Example: For the machine instruction ADD R1, R2, R3, the corresponding microoperations might be:
+Fetch the value from R2 into a temporary register.
+Fetch the value from R3 into the ALU.
+Perform the addition in the ALU.
+Store the result in R1.
+
+
+
 31. How does a microoperation differ from a regular assembly language
 instruction?
+
+A microoperation represents the individual steps a CPU performs to execute an instruction, such as transferring data between registers or performing an arithmetic operation.
+
+In contrast, an assembly language instruction corresponds to a higher-level operation defined in the Instruction Set Architecture (ISA), such as ADD or LOAD.
+
 32. Explain the steps of the fetch–decode–execute cycle.
+Fetch: CPU obtains an instruction from memory.
+Decode: CPU decodes the instruction to be ran, this can include interpriting the raw bits of an opcode
+to understand the inscruction to be performed and obtaing values (operands) to be used.
+Execute: The CPU performs the instruction and may yield a output.
+
+
 33. How does interrupt-driven I/O work?
+
+Interrupt-driven I/O is a mechanism that allows the CPU to handle input/output (I/O) operations efficiently by using interrupts instead of continuously checking the status of I/O devices (polling).
+
+
 34. Explain how an assembler works, including how it generates the
 symbol table, what it does with source and object code, and how it
 handles labels.
+
+An assembler is a program that converts assembly language code (human-readable mnemonics) into machine language (binary code) that the CPU can execute. The process involves several key steps, including managing labels and generating the symbol table.
+
+The symbol table is a data structure that maps labels and symbolic names to their corresponding memory addresses or values.
+Example: START: LOAD X
+The label START is added to the symbol table with the address of the LOAD X instruction.
+
 35. What is an embedded system? How does it differ from a regular
 computer?
+
+An embedded system is a specialized computer system designed to perform a specific task or set of tasks, often within a larger system. It integrates hardware and software to control or monitor devices.
+
 36. Provide a trace (similar to the one in Figure 4.14) for Example 4.1.
-37. Explain the difference between hardwired control and
-microprogrammed control.
-the conversion one-to-one (one assembly instruction equals one
-machine instruction)?
-29. What is the significance of RTN?
-30. Is a microoperation the same thing as a machine instruction?
-31. How does a microoperation differ from a regular assembly language
-instruction?
-32. Explain the steps of the fetch–decode–execute cycle.
-33. How does interrupt-driven I/O work?
-34. Explain how an assembler works, including how it generates the
-symbol table, what it does with source and object code, and how it
-handles labels.
-35. What is an embedded system? How does it differ from a regular
-computer?
-36. Provide a trace (similar to the one in Figure 4.14) for Example 4.1.
+
+The instruction is A -B
+
+here is 5 - 3 using a subroutine
+
+Load A   // load first number into A   
+store x  // use X as a parameter to the 1st number
+load B
+store Y
+JNS SUBRT  // store return address and jump to procedure
+Load X 
+output
+Halt
+X Dec 0
+Y Dec 0
+A dec 5
+B dec 3
+SUBRT Hex 0 // store return address here
+    load X // load first number into AC
+    subt Y // sutract Y from AC
+    JUMPI SUBRT
+    END 
+// The system knows the address for A because the assembler assigns memory locations to all variables and 
+//instructions during the assembly process. 
+
 37. Explain the difference between hardwired control and
 microprogrammed control.
 
+Hardwired Control:
+    Uses fixed logic circuits to generate control signals.
+    Fast but inflexible; changes require hardware redesign.
+Microprogrammed Control:
+    Uses a microprogram stored in control memory to generate control signals.
+    Flexible but slower; updates require modifying the microprogram.
 
+38. What is a stack? Why is it important for programming?
+A stack is a Last In, First Out (LIFO) data structure where the most recently added entry is the first to be accessed or removed. Stacks support two primary operations:
+
+Stacks ensure a defined order of data and restrict access to only the topmost entry, making them essential for processes like function calls, where only the most recent data (e.g., return addresses, local variables) is relevant.
+
+ 39. Compare CISC machines to RISC machines.
+
+CISC (Complex Instruction Set Computing):
+    ISA: Complex with many specialized instructions.
+    Execution: Single instructions often execute multi-step operations (e.g., MULT may load, multiply, and store in one instruction).
+    Hardware: Requires more transistors for decoding and execution.
+    Performance: Optimized for minimizing memory usage and reducing program size.
+    Example: Intel x86.
+RISC (Reduced Instruction Set Computing):
+    ISA: Simple and streamlined with fewer instructions.
+    Execution: Each instruction performs a single operation (e.g., load, store, add) and executes in one clock cycle.
+    Hardware: Simpler, enabling faster execution and easier pipelining.
+    Performance: Optimized for speed, power efficiency, and pipelining.
+    Example: ARM architecture.
+
+ 40. How does Intel’s architecture differ from MIPS?
+
+ Feature	        Intel Architecture	                        MIPS Architecture
+ISA Type	        CISC (Complex Instruction Set Computing)	RISC (Reduced Instruction Set Computing)
+Instruction         Length	Variable-length instructions	    Fixed-length instructions (typically 32 bits)
+Execution	        Complex instructions; some take multiple cycles	Simple instructions; most take one cycle
+Registers	        Smaller register set (e.g., x86 has 8 general-purpose registers)	Larger register set (e.g., 32 in MIPS)
+Addressing Modes	Many addressing modes	Fewer addressing modes
+Pipeline	        Harder to implement due to instruction complexity	Easier due to simplicity
+Power Efficiency	Less efficient	                            More power-efficient
+Usage	            Found in PCs, servers, and laptops	        Common in embedded systems and low-power devices
+
+
+ 41. Name four Intel processors and four MIPS processors.
+Intel Processors:
+    Intel 8086: First 16-bit processor, introduced in 1978.
+    Intel Core i7: High-performance consumer processor.
+    Intel Xeon: Designed for servers and data centers.
+    Intel Pentium: Popular processor series in the 1990s and 2000s.
+MIPS Processors:
+    R2000: Early MIPS RISC processor, used in workstations.
+    R3000: Improved version of the R2000, used in systems like the Sony PlayStation.
+    MIPS32: 32-bit RISC processor for embedded systems.
+    MIPS64: 64-bit version, designed for high-performance computing and networking devices.
 
 
 
