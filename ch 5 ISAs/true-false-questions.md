@@ -23,28 +23,32 @@ true
 true
 
  6. Most architectures today are accumulator based.
-
+false
 
  7. Fixed-length instruction format typically results in better
  performance than variable-length instruction format.
-
+true
 
  8. Expanding opcodes make instruction decoding much easier than
  when it is not used.
-
+false
 
  9. Instruction set orthogonality refers to the characteristic in an
  instruction set architecture where each instruction has a “backup”
  instruction that performs the same operation.
 
+In computer engineering, an orthogonal instruction set is an instruction set architecture where all instruction types can use all addressing modes.
+false
 
  10. The effective address of an operand is the value of its actual address in
  memory.
+ false
 
 
  11. Resource conflicts occur in a pipeline when there are multiple
  instructions that require the same resource.
-
+true
 
  12. Data dependencies occur in a pipeline when multiple instructions
  need the CPU
+ false
