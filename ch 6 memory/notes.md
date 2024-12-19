@@ -85,6 +85,34 @@ Cache Lookup Key Steps (Simplified):
 
     RAM > cache, so cache blocks are mapped using a modular approach.
     RAM blocks are mapped to cache blocks with the following formula: RAM_block mod number_of_cache_blocks
-    
 
+
+Discussion:
+    How does memory adress contain tag (identification of mem block) and index (identification of cache block)? 
+    Take address: 0000 0001 which points to a location in main memory.
+    the high order bits are used to identify memory block.
+    The following bits are used to identify cache block 
+    And the low order (right most) bits identify the offset.
+
+    0x001 = 0000 0001 (8 bits).
+    Split the binary address into Tag, Index, and Offset:
+
+    Tag (5 bits)	Index (1 bit)	Offset (2 bits)
+    00000	        0	            01
+
+    - How many bits are used for each portion?
+    
+    Cache Block Size (bytes per block) → Determines the offset.
+    Number of Cache Blocks → Determines the index.
+    Total Memory Size → Determines the overall address size and remaining bits for the tag.
+
+    in our example, we have 4 memory blocks, 2 cache blocks, and each cache block has 4 bytes.
+    We need 2 bits (rightmost) for offset.
+    1 bit for cache block (the index).
+    And the 5 high-order (leftmost) bits to determine the memory block.
+
+        Note: 5 bits are not necessary to identify 4 blocks of main memory, but in the example these high-order bits, serve the purpose as they are most significant in identifying the memory location.
+        Cache Block= Memory Block mod 2^N 
+
+    Note: The Tag doesn’t need to uniquely identify all memory blocks—just the blocks that map to the same cache block.
 
