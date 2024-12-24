@@ -4,23 +4,89 @@
 
  1. Which is faster, SRAM or DRAM?
 
+SRAM is faster but more expensive and used for smaller, high-speed memory (cache), while DRAM is slower but more cost-effective and used for larger memory (RAM).
+
+Explanation:
+SRAM:
+    Uses flip-flops to store data.
+    Retains data as long as power is supplied (doesn't need refreshing).
+    Has lower access latency and higher speed.
+    Typically used in cache memory.
+DRAM:
+    Uses capacitors to store data.
+    Data needs to be refreshed periodically because capacitors leak charge.
+    Refreshing introduces delays, making DRAM slower than SRAM.
+    Typically used in main memory (RAM) due to its lower cost per bit.
+
+
+Flip-Flop (SRAM): Stable, fast, no refresh needed, but expensive and power-hungry.
+Capacitor (DRAM): Simple, cost-effective, but slower due to refresh cycles.
+
+
  2. What are the advantages of using DRAM for main memory?
+    Cheaper, less power usage, higher density, widespread availability.
+
 
  3. Name three different applications where ROMs are often used.
+    Firmware (like BIOS), embedded systems, and game catridges.
+    firmaware is software embedded in hardware components.
 
- 4. Explain the concept of a memory hierarchy. Why did your authors
+ 4. Explain the concept of a memory hierarchy. Why did your authors choose to represent it as a pyramid?
 
- choose to represent it as a pyramid?
+A pyramid is a great representation, as it dmonstrates size, distanse, and order.
+Formas of memory at the top are faster, smaller, and more expensive.
 
- 5. Explain the concept of locality of reference, and state its importance
+The Cache for example is accessed before RAM typically (top level access) and is both smaller and nearer to the CPU than main memory ir any form of secondary storage. As you move down the pyramid, we see forms of memory that are generally slower to access, allow for greater overall size of storage, and are cheaper to maintain and produce more of.
 
- to memory systems.
+
+
+ 5. Explain the concept of locality of reference, and state its importance to memory systems.
+
+
+Locality of Reference refers to the tendency of a program to access data and instructions that are either:
+
+Spatial Locality:
+    Nearby in memory (e.g., sequential array elements).
+    Example: Accessing consecutive indices in an array.
+
+Temporal Locality:
+    Recently accessed and likely to be accessed again soon.
+    Example: Loop variables frequently reused within iterations.
+
+Importance:
+Locality is critical for memory performance because:
+
+Caching relies on accessing frequently used data or instructions quickly.
+Paging and segmentation perform better when a program accesses logically and physically grouped data.
+
+Examples:
+Arrays exhibit spatial locality because their elements are stored sequentially in memory.
+Hash tables may have poorer spatial locality because their values are often stored in scattered locations.
+
 
  6. What are the three forms of locality?
 
+Temporal Locality:
+    Definition: The tendency for a program to access the same memory location repeatedly within a short period.
+    Example: Variables in a loop or recently used data.
+
+Spatial Locality:
+    Definition: The tendency to access memory locations that are physically close to each other.
+    Example: Accessing consecutive elements in an array.
+
+Sequential Locality:
+    Definition: A subset of spatial locality where memory locations are accessed sequentially.
+    Example: Reading through a text file or executing program instructions sequentially.
+
+
  7. Give two noncomputer examples of the concept of cache.
 
+A tool box taken out of the garage. A stack of books rented from a library.
+
+
  8. Which of L1 or L2 cache is faster? Which is smaller? Why is it smaller?
+
+
 
  9. Cache is accessed by its _______, whereas main memory is accessed
 
