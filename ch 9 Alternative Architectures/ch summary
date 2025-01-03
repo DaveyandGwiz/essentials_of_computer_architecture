@@ -1,0 +1,44 @@
+
+CHAPTER SUMMARY
+
+ This chapter has presented an overview of some
+ important aspects of multiprocessor and multicomputer
+ systems. These systems provide a means of solving
+ otherwise unmanageable problems in an efficient
+ manner.
+ The RISC-versus-CISC debate is becoming increasingly a
+ comparison of chip architectures, not ISAs. What really
+ matters is program execution time, and both RISC and
+ CISC designers will continue to improve performance.
+ Flynn’s taxonomy categorizes architectures depending
+ on the number of instructions and data streams. MIMD
+ machines should be further divided into those that use
+ shared memory and those that do not.
+ The power of today’s digital computers is truly
+ astounding. Internal processor parallelism has
+ contributed to this increased power through superscalar
+ and superpipelined architectures. Originally, processors
+ did one thing at a time, but it is now common for them to
+ perform multiple concurrent operations. Vector
+ processors support vector operations, whereas MIMD
+ machines incorporate multiple processors.
+SIMD and MIMD processors are connected through
+ interconnection networks. Shared memory
+ multiprocessors treat the collection of physical memories
+ as a single entity, whereas distributed memory
+ architectures allow a processor sole access to its memory.
+ Either approach allows the common user to have
+ supercomputing capability at an affordable price. The
+ most popular multiprocessor architectures are MIMD,
+ shared memory, bus-based systems.
+ Some highly complex problems cannot be solved using
+ our traditional model of computation. Alternative
+ architectures are necessary for specific applications.
+ Dataflow computers allow data to drive computation,
+ rather than the other way around. Neural networks learn
+ to solve problems of the highest complexity. Systolic
+ arrays harness the power of small processing elements,
+ pushing data throughout the array until the problem is
+ solved. The departure from silicon-based computers to
+ biological, optical, and quantum computers may very
+ well usher in a new generation of computing technology.
