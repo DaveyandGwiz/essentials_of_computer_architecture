@@ -1,20 +1,14 @@
-section .data
-    msg db "Hello, World!", 0xA  ; Message with a newline
-    msg_len equ $ - msg          ; Length of the message
+# Hello, World!
+.data ## Data declaration section
+	## String to be printed:
+	out_string: .asciiz "\nHello, World!\n"
 
-section .text
-    global _start
-
-_start:
-    ; Write message to stdout
-    mov rax, 1                  ; Syscall number (1 = write in x64 Linux)
-    mov rdi, 1                  ; File descriptor (1 = stdout)
-    lea rsi, [msg]              ; Address of the message
-    mov rdx, msg_len            ; Length of the message
-    syscall                     ; Make the syscall
-
-
-    ; Exit the program
-    mov rax, 60                 ; Syscall number (60 = exit in x64 Linux)
-    xor rdi, rdi                ; Exit code 0
-    syscall
+.text ## Assembly language instructions go in text segment
+	main: ## Start of code section
+	li $v0, 4 # system call code for printing string = 4
+	la $a0, out_string # load address of string to be printed into $a0
+	syscall # call operating system to perform operation
+	# specified in $v0
+	# syscall takes its arguments from $a0, $a1, ...
+	li $v0, 10 # terminate program
+	syscall
